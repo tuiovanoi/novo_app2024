@@ -15,7 +15,7 @@ import { LoginTypes } from "../../types/Screen.types";
 import { AxiosError } from "axios";
 import { IResponse } from "../../interfaces/Response.interface";
 
-export default function Cadastrar({ navigation }: LoginTypes) {
+export function Cadastrar({ navigation }: LoginTypes) {
   const { register } = useAuth();
   const [data, setData] = useState<IRegister>();
   const [isLoading, setIsLoading] = useState(true);
