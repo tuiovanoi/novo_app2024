@@ -1,58 +1,33 @@
-import React, { useState } from "react";
-import { KeyboardAvoidingView, View, TextInput, Alert, Text } from "react-native";
-import { MaterialIcons, Entypo } from "@expo/vector-icons";
+import React, { useState } from 'react';
+import { KeyboardAvoidingView, View, Text, TextInput, Alert } from 'react-native';
+import { MaterialIcons, Entypo } from '@expo/vector-icons';
 import { styles } from './styles';
 import { colors } from '../../styles/colors';
 import { ButtonInterface } from '../../components/ButtonInterface';
-import { LoginTypes } from "../../Navigations/login.navigation";
+import { LoginTypes } from '../../Navigations/login.navigation';
+import { useAuth } from '../../hook/auth'
+import { AxiosError } from 'axios';
+
 export interface IAuthenticate {
-  email?: string;
-  password?: string;
+    email?: string;
+    password?: string;
 }
 export function Login({ navigation }: LoginTypes) {
-  const [data, setData] = useState<IAuthenticate>();
-  async function handleSignIn() {
-    if (data?.email && data.password) {
-      console.log(data)
-    } else {
-      Alert.alert("Preencha todos os campos");
+    const [data, setData] = useState<IAuthenticate>();
+    const { signIn, setLoading } = useAuth()
+    async function handleSignIn() {
+        if (data?.email && data.password) {
+            setLoading(true)
+            try {
+                await signIn(data)
+            } catch (error) {
+                const err = error as  AxiosError
+                const msg = err.response?.data as string
+                Alert.alert(msg)
+            }
+            setLoading(false)
+        } else {
+            Alert.alert("Preencha todos os campos!!!");
+        }
     }
-  }
-  function handleCadastrar() {
-    navigation.navigate("Login")
-  }
-  function handleChange(item: IAuthenticate) {
-    setData({ ...data, ...item })
-  }
-  return (
-    <View style={styles.container}>
-      <KeyboardAvoidingView>
-        <Text style={styles.title}>Login</Text>
-        <View style={styles.formRow}>
-          <MaterialIcons name="email" style={styles.icon} />
-          <TextInput
-            placeholderTextColor={colors.third}
-            style={styles.input}
-            placeholder="email"
-            keyboardType="email-address"
-            autoCapitalize="none"
-            onChangeText={(i) => handleChange({ email: i })}
-          />
-          <View style={styles.formRow}>
-            <Entypo name="key" style={styles.icon} />
-            <TextInput
-              placeholderTextColor={colors.third}
-              style={styles.input}
-              placeholder="senha"
-              secureTextEntry={true}
-              autoCapitalize="none"
-              onChangeText={(i) => handleChange({ password: i })}
-            />
-          </View>
-          <ButtonInterface title='login' type='primary' onPressI={handleSignIn} />
-          <ButtonInterface title='cadastre-se' type='secondary' onPressI={handleCadastrar} />
-        </View>
-      </KeyboardAvoidingView>
-    </View>
-  );
 }
