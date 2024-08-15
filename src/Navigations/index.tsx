@@ -5,7 +5,7 @@ import { useAuth } from "../hook/auth";
 import { DrawerNavigation } from './drawer.navigation';
 import { Loading } from "../components/Loading";
 
-export default function Navigation() {
+export function Navigation() {
     const { user, loading } = useAuth()
     if (loading) {
         return <Loading />

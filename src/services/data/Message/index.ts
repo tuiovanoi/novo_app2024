@@ -1,12 +1,12 @@
 import { api } from "../../api"
 export interface IMessage {
-    tittle: string
-    menssage: string
+    title?: string
+    message?: string
 }
 export interface IResponseMessage {
     id: number
     user_id: number
-    tittle: string
+    title: string
     message: string
     created_at: string
     user: {
@@ -20,7 +20,7 @@ class MessageData {
         return api.get<IResponseMessage[]>('/message')
     }
     store(data: IMessage) {
-        return api.get('/message', data)
+        return api.post('/message', data)
     }
 }
 export default new MessageData()

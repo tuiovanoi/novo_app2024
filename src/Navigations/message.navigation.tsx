@@ -1,5 +1,5 @@
 import { createStackNavigator, StackNavigationProp } from '@react-navigation/stack';
-import { CadMensagem } from '../screens/CadMensagem'
+import { CadMessage } from '../screens/CadMensagem'
 import { Mensagem } from '../screens/Mensagem'
 import React from 'react' 
 type MessageStackParamList = {
@@ -15,7 +15,7 @@ export function MessageNavigation() {
     return (
         <Stack.Navigator screenOptions={{ headerShown: false }}>
             <Stack.Screen name='Mensagem' component={Mensagem} />
-            <Stack.Screen name='CadMensagem' component={CadMensagem} />
+            <Stack.Screen name='CadMensagem' component={CadMessage} />
         </Stack.Navigator>
     )
 }

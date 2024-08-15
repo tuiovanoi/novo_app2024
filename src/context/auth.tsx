@@ -1,6 +1,4 @@
-import {
-    IAuthenticated, IUser
-} from '../services/data/User'
+import {IAuthenticated, IUser} from '../services/data/User'
 import React, { createContext, useState, useCallback, ReactNode, useEffect, Dispatch, SetStateAction } from 'react'
 import { api } from '../services/api'
 import { apiUser } from '../services/data'

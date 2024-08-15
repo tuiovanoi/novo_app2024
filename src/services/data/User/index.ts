@@ -15,7 +15,7 @@ export interface IAuthenticated {
     user: IResponseUser
     token: {
         token: string
-        expring_at: string
+        expires_at: string
     }
 }
 class UserData {
