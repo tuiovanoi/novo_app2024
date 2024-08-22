@@ -22,7 +22,7 @@ export function Mensagem() {
     const renderItem = (({ item }: itemMessage)=>{
         return(
             <View style={styles.item}>
-                <Text style={styles.itemText}>Título: {item.tittle}</Text>
+                <Text style={styles.itemText}>Título: {item.title}</Text>
                 <Text style={styles.itemText}>Menssagem: {item.message}</Text>
             </View>
         )
