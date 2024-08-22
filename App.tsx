@@ -5,10 +5,10 @@ import { AuthProvider } from './src/context/auth';
 export default function App() {
   return (
     <>
-    <AuthProvider>
-      <Navigation />
-    </AuthProvider>
+      <AuthProvider>
+        <Navigation />
+      </AuthProvider>
       <StatusBar style="auto" />
     </>
-    );
+  );
 }
