@@ -30,6 +30,12 @@ export function Login({ navigation }: LoginTypes) {
             Alert.alert("Preencha todos os campos!!!");
         }
     }
+    function handleRegister(){
+        navigation.navigate("Cadastrar")
+    }
+    function handleChange(item: IAuthenticate) {
+        setData({...data, ...item});
+    }
     return (
         <View style={styles.container}>
             <KeyboardAvoidingView>
@@ -55,8 +61,8 @@ export function Login({ navigation }: LoginTypes) {
                     onChangeText={(i) => handleChange({password: i})}
                     />
                 </View>
-                <ComponentButtonInterface title='Login' type='primary' onPressI={handleSignIn} />
-                <ComponentButtonInterface title='Cadastre-se' type='secondary' onPressI={handleRegister} />
+                <ButtonInterface title='Login' type='primary' onPressI={handleSignIn} />
+                <ButtonInterface title='Cadastre-se' type='secondary' onPressI={handleRegister} />
 
             </KeyboardAvoidingView>
         </View>
